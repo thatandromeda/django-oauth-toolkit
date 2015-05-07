@@ -1,7 +1,7 @@
 Settings
 ========
 
-Our configurations are all namespaced under the `OAUTH2_PROVIDER` settings with the solely exception of
+Our configurations are all namespaced under the `OAUTH2_PROVIDER` settings with the sole exception of
 `OAUTH2_PROVIDER_APPLICATION_MODEL`: this is because of the way Django currently implements
 swappable models. See issue #90 (https://github.com/evonove/django-oauth-toolkit/issues/90) for details.
 
@@ -20,7 +20,7 @@ For example:
     }
 
 
-A big *thank you* to the guys from Django REST Framework for inspiring this.
+A big *thank you* to the folks from Django REST Framework for inspiring this.
 
 
 List of available settings
@@ -59,6 +59,11 @@ CLIENT_SECRET_GENERATOR_LENGTH
 The length of the generated secrets, in characters. If this value is too low,
 secrets may become subject to bruteforce guessing.
 
+CUSTOM_AUTHORIZATION_TEMPLATE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The name of the template used to render the page where users authorize your
+application. Defaults to ``'oauth2_provider/authorize.html'``.
+
 OAUTH2_VALIDATOR_CLASS
 ~~~~~~~~~~~~~~~~~~~~~~
 The import string of the ``oauthlib.oauth2.RequestValidator`` subclass that
@@ -71,7 +76,7 @@ to get a ``Server`` instance.
 
 SCOPES
 ~~~~~~
-A dictionnary mapping each scope name to its human description.
+A dictionary mapping each scope name to its human description.
 
 READ_SCOPE
 ~~~~~~~~~~
