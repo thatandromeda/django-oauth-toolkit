@@ -43,6 +43,7 @@ DEFAULTS = {
     'APPLICATION_MODEL': getattr(settings, 'OAUTH2_PROVIDER_APPLICATION_MODEL', 'oauth2_provider.Application'),
     'REQUEST_APPROVAL_PROMPT': 'force',
     'ALLOWED_REDIRECT_URI_SCHEMES': ['http', 'https'],
+    'CUSTOM_AUTHORIZATION_TEMPLATE': 'oauth2_provider/authorize.html',
 
     # Special settings that will be evaluated at runtime
     '_SCOPES': [],
@@ -56,6 +57,7 @@ MANDATORY = (
     'OAUTH2_BACKEND_CLASS',
     'SCOPES',
     'ALLOWED_REDIRECT_URI_SCHEMES',
+    'CUSTOM_AUTHORIZATION_TEMPLATE',
 )
 
 # List of settings that may be in string import notation.

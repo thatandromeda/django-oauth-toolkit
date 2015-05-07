@@ -64,11 +64,11 @@ class AuthorizationView(BaseAuthorizationView, FormView):
     hidden fields on the form.
     A possible alternative could be keeping such informations in the session.
 
-    The endpoint is used in the followin flows:
+    The endpoint is used in the following flows:
     * Authorization code
     * Implicit grant
     """
-    template_name = 'oauth2_provider/authorize.html'
+    template_name = oauth2_settings.CUSTOM_AUTHORIZATION_TEMPLATE
     form_class = AllowForm
 
     server_class = Server
