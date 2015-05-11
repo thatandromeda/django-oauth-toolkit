@@ -441,6 +441,30 @@ class TestAuthorizationCodeView(BaseTest):
         response = self.client.post(reverse('oauth2_provider:authorize'), data=form_data)
         self.assertEqual(response.status_code, 400)
 
+    def test_pre_auth_view_renders_with_correct_template(self):
+        """
+        Tests that the authorization view renders with the custom template
+        specified in the user settings file.
+        """
+        self.client.login(username="test_user", password="123456")
+
+        query_string = urlencode({
+            'client_id': self.application.client_id,
+            'response_type': 'code',
+            'state': 'random_state_string',
+            'scope': 'read write',
+            'redirect_uri': 'http://example.it',
+        })
+        url = "{url}?{qs}".format(url=reverse('oauth2_provider:authorize'), qs=query_string)
+
+        # We don't actually need a template that would produce a correct
+        # end-user result here; we're just checking to ensure it renders with
+        # the given template. Therefore, may as well use an existing template
+        # rather than write a one-off for the test.
+        oauth2_settings.CUSTOM_AUTHORIZATION_TEMPLATE = 'base.html'
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'base.html')
+
 
 class TestAuthorizationCodeTokenView(BaseTest):
     def get_auth(self):
